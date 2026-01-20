@@ -1,14 +1,12 @@
-import dotenv from "dotenv";
 import { requiredEnv } from "../helpers/env.helper.js";
-dotenv.config();
 
 const PORT = process.env.PORT || 5000;
 const NODE_ENV = process.env.NODE_ENV || "development";
 const MONGO_URI = requiredEnv("MONGO_URI");
 const CLIENT_URL = process.env.CLIENT_URL;
 const JWT_SECRET = process.env.JWT_SECRET;
-const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
-const REFRESH_TOKEN_SECRET = process.env.REFRESH_TOKEN_SECRET;
+const ACCESS_TOKEN_SECRET = requiredEnv("ACCESS_TOKEN_SECRET");
+const REFRESH_TOKEN_SECRET = requiredEnv("REFRESH_TOKEN_SECRET");
 const ACCESS_TOKEN_EXPIRY = process.env.ACCESS_TOKEN_EXPIRY;
 const REFRESH_TOKEN_EXPIRY = process.env.REFRESH_TOKEN_EXPIRY;
 const EMAIL_VERIFICATION_EXPIRY = process.env.EMAIL_VERIFICATION_EXPIRY;

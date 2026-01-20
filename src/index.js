@@ -9,6 +9,7 @@ import dbConnect from "./configs/db.config.js";
 import { errorHandler } from "./middleware/error.middleware.js";
 import { notFound } from "./middleware/notFound.js";
 import { NODE_ENV, PORT } from "./configs/env.js";
+import "./configs/env.js";
 
 dotenv.config();
 const app = express();
@@ -18,7 +19,7 @@ dbConnect();
 app.use(
   helmet({
     contentSecurityPolicy: false,
-  })
+  }),
 );
 
 // Parse req body into buffer for stripe webhooks signature verification
@@ -44,7 +45,7 @@ app.use(
     credentials: true,
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
-  })
+  }),
 );
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -64,7 +65,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/test", applyRateLimit(testRateLimiter), (req, res) =>
-  res.send("Test route works!")
+  res.send("Test route works!"),
 );
 
 app.post("/test-notification", testNotification);
@@ -85,7 +86,7 @@ app.listen(PORT || 5000, () => {
   console.log(`API v1: http://localhost:${PORT}/api/v1`);
   console.log(`Access Redis Insight GUI at http://localhost:5540`);
   console.log(
-    "For the BullMQ Admin UI, open http://localhost:8080/admin/queues"
+    "For the BullMQ Admin UI, open http://localhost:8080/admin/queues",
   );
 });
 
