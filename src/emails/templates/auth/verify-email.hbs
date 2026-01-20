@@ -1,0 +1,65 @@
+{{!-- emails/templates/auth/verify-email.hbs --}}
+
+{{#> layouts/main title="Verify Your Email Address"}}
+
+  {{> components/email-header
+      title="Verify Your Email Address"
+      subtitle="Complete your registration"
+  }}
+
+  {{#> components/text-block}}
+    <p>Hello <strong>{{name}}</strong>,</p>
+
+    <p>
+      Thank you for signing up with {{appName}}!
+      To complete your registration and start using your account,
+      please verify your email address.
+    </p>
+  {{/components/text-block}}
+
+  {{> components/cta-button
+      url=verifyUrl
+      text="Verify Email Address"
+      align="center"
+  }}
+
+  {{#> components/text-block align="center"}}
+    <p style="margin-top: 16px; color: #6c757d;">
+      Or copy and paste this link into your browser:
+    </p>
+
+    <p style="word-break: break-all;">
+      <a href="{{verifyUrl}}" style="color: #007bff;">
+        {{verifyUrl}}
+      </a>
+    </p>
+  {{/components/text-block}}
+
+  {{#if expiresIn}}
+    {{> components/alert
+        type="warning"
+        icon="⏰"
+        title="Link Expiration"
+        expiresIn=expiresIn
+    }}
+  {{/if}}
+
+  {{#> components/panel title="Need Help?"}}
+    <ul style="margin:0; padding-left:18px;">
+      <li>Link not working? Try copying the URL</li>
+      <li>If you didn’t sign up, you can ignore this email</li>
+      <li>
+        Contact support:
+        <a href="mailto:{{supportEmail}}">
+          {{supportEmail}}
+        </a>
+      </li>
+    </ul>
+  {{/components/panel}}
+
+  {{> components/notice
+      type="security"
+      message="🔒 This is a secure verification link. Never share it with anyone."
+  }}
+
+{{/layouts/main}}

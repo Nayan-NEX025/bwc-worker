@@ -1,0 +1,23 @@
+<div
+  style="
+    border: 1px solid #ffeeba;
+    background-color: #fff3cd;
+    padding: 12px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #856404;
+    margin: 16px 0;
+  "
+>
+  <div style="font-weight: 600; margin-bottom: 6px;">
+    {{icon}}
+    {{title}}
+  </div>
+
+  {{#if expiresIn}}
+    <div style="font-size: 13px;">
+      This verification link will expire in
+      <strong>{{expiresIn}}</strong>.
+    </div>
+  {{/if}}
+</div>
