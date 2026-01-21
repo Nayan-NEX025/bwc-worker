@@ -2,6 +2,7 @@ import { Router } from "express";
 import { verifyToken } from "../../../middleware/auth/token.middleware.js";
 import { authorizeRoles } from "../../../middleware/auth/role.middleware.js";
 import {
+  createBrevoEmailCampaignController,
   createEmailCampaignController,
   deleteEmailCampaign,
   getAllEmailCampaigns,
@@ -18,6 +19,14 @@ router
     createEmailCampaignController,
   )
   .get(verifyToken, authorizeRoles([ROLES.ADMIN]), getAllEmailCampaigns);
+
+router
+  .route("/brevo")
+  .post(
+    verifyToken,
+    authorizeRoles([ROLES.ADMIN]),
+    createBrevoEmailCampaignController,
+  );
 
 router
   .route("/:id")

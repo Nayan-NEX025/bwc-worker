@@ -7,7 +7,10 @@
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
     "worker:email:dev": "cross-env NODE_ENV=development nodemon src/queues/email/email.worker.js",
-    "worker:email": "node src/queues/email/email.worker.js"
+    "worker:email-campaign:dev": "cross-env NODE_ENV=development nodemon src/queues/email-campaign/emailCampaign.worker.js",
+    "worker:email": "node src/queues/email/email.worker.js",
+    "worker:email-campaign": "node src/queues/email-campaign/emailCampaign.worker.js",
+    "dev:all": "concurrently -k -n API,EMAIL,EMAIL_CAMPAIGN \"npm run dev\"  \"npm run worker:email:dev\" \"npm run worker:email-campaign:dev\""
   },
   "repository": {
     "type": "git",
@@ -25,6 +28,7 @@
     "@bull-board/api": "^6.16.2",
     "@bull-board/express": "^6.16.2",
     "@pusher/push-notifications-server": "^1.2.7",
+    "axios": "^1.13.2",
     "bcryptjs": "^3.0.3",
     "bullmq": "^5.66.2",
     "cloudinary": "^2.8.0",
@@ -48,6 +52,7 @@
     "zod": "^4.3.5"
   },
   "devDependencies": {
+    "concurrently": "^9.2.1",
     "cross-env": "^10.1.0"
   }
 }

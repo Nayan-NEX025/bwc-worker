@@ -1,3 +1,5 @@
+import crypto from "crypto";
+
 export const generateOTP = () => {
-  return Math.floor(1000 + Math.random() * 9000);
+  return crypto.randomInt(100000, 1000000); // 6 digits
 };

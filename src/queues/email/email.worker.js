@@ -5,7 +5,7 @@ import EmailCampaign from "../../modules/email/campaigns/emailCampaign.model.js"
 import dbConnect from "../../configs/db.config.js";
 import { sendEmail } from "../../modules/email/email.service.js";
 dbConnect(); // BullMQ workers are separate Node processes. Every worker must initialize its own DB, Redis, and env. They are independent services, not threads.
-console.log("worker is running.");
+console.log("Email Worker is running.");
 
 new Worker(
   "email-queue",

@@ -1,7 +1,10 @@
 import { get } from "mongoose";
 import { paginateWithAggregation } from "../../../utils/pagination.js";
 import EmailCampaign from "./emailCampaign.model.js";
-import { createEmailCampaign } from "./emailCampaign.service.js";
+import {
+  createBrevoEmailCampaign,
+  createEmailCampaign,
+} from "./emailCampaign.service.js";
 import { getAllEmailCampaignPipeline } from "./getAllEmailCampaignPipeline.js";
 import ApiError from "../../../utils/error/ApiError.js";
 
@@ -59,5 +62,19 @@ export const deleteEmailCampaign = async (req, res, next) => {
   return res.status(200).json({
     success: true,
     message: "Email campaign deleted successfully",
+  });
+};
+
+export const createBrevoEmailCampaignController = async (req, res, next) => {
+  const campaign = await createBrevoEmailCampaign(req.body, req.user);
+
+  return res.status(202).json({
+    success: true,
+    message: "Email campaign queued successfully",
+    data: {
+      campaignId: campaign._id,
+      status: campaign.status,
+      totalRecipients: campaign.totalRecipients,
+    },
   });
 };

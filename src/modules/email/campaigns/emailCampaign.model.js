@@ -45,6 +45,7 @@ const emailCampaignSchema = new mongoose.Schema(
         "cancelled",
         "failed",
         "processing",
+        "sent",
       ],
       default: "processing",
       index: true,
@@ -67,9 +68,12 @@ const emailCampaignSchema = new mongoose.Schema(
       ref: "User",
       index: true,
     },
-
-    // // Dynamic template data
-    // meta: mongoose.Schema.Types.Mixed,
+    brevoCampaignId: {
+      type: Number,
+    },
+    brevoListId: {
+      type: Number,
+    },
   },
   {
     timestamps: true,
