@@ -3,7 +3,6 @@ import { verifyToken } from "../../../middleware/auth/token.middleware.js";
 import { authorizeRoles } from "../../../middleware/auth/role.middleware.js";
 import {
   createBrevoEmailCampaignController,
-  createEmailCampaignController,
   deleteEmailCampaign,
   getAllEmailCampaigns,
 } from "./campaign.controller.js";
@@ -13,20 +12,17 @@ const router = Router();
 
 router
   .route("/")
-  .post(
-    verifyToken,
-    authorizeRoles([ROLES.ADMIN]),
-    createEmailCampaignController,
-  )
-  .get(verifyToken, authorizeRoles([ROLES.ADMIN]), getAllEmailCampaigns);
-
-router
-  .route("/brevo")
+  // .post(
+  //   verifyToken,
+  //   authorizeRoles([ROLES.ADMIN]),
+  //   createEmailCampaignController,
+  // )
   .post(
     verifyToken,
     authorizeRoles([ROLES.ADMIN]),
     createBrevoEmailCampaignController,
-  );
+  )
+  .get(verifyToken, authorizeRoles([ROLES.ADMIN]), getAllEmailCampaigns);
 
 router
   .route("/:id")
