@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js",
+    "start": "node worker-entry.js",
     "dev": "nodemon src/index.js",
     "worker:email:dev": "cross-env NODE_ENV=development nodemon src/queues/email/email.worker.js",
     "worker:email-campaign:dev": "cross-env NODE_ENV=development nodemon src/queues/email-campaign/emailCampaign.worker.js",
